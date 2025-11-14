@@ -9,8 +9,11 @@ package com.mycompany.project_vocabulary;
  * @author chara
  */
 public class level_Design {
+
     private String level;
     private int scores;
+    private int totalQuestions;
+    private double percent;
 
     /**
      * @return the level
@@ -38,5 +41,21 @@ public class level_Design {
      */
     public void setScores(int scores) {
         this.scores = scores;
+    }
+
+    public int getTotalQuestions() {
+        return totalQuestions;
+    }
+
+    public void setTotalQuestions(int totalQuestions) {
+        this.totalQuestions = totalQuestions;
+    }
+
+    public double getPercent() {
+        return percent;
+    }
+
+    public void setPercent(double percent) {
+        this.percent = percent;
     }
 }

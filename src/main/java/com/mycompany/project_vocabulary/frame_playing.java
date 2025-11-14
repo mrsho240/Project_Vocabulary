@@ -4,13 +4,26 @@
  */
 package com.mycompany.project_vocabulary;
 
+import com.google.gson.*;
+import java.awt.Color;
+import java.io.*;
+import java.util.*;
+import javax.swing.*;
+
 /**
  *
  * @author chara
  */
 public class frame_playing extends javax.swing.JFrame {
-    private level_Design level;
+
+    private List<Vocabulary> vocabList;
+    private level_Design levelDesign;
+    private List<String> currentChoices;
+    private String correctAnswer;
+    private int correctIndex;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_playing.class.getName());
+    private int index = 0;
+    private int score = 0;
 
     /**
      * Creates new form frame_playing
@@ -18,10 +31,126 @@ public class frame_playing extends javax.swing.JFrame {
     public frame_playing() {
         initComponents();
     }
+
     public frame_playing(level_Design level) {
         initComponents();
-        this.level = level;
-        System.out.println(level.getLevel());
+        this.levelDesign = level;
+        String levelName = (levelDesign != null && levelDesign.getLevel() != null)
+                ? levelDesign.getLevel()
+                : "Unknown";
+        levelBadge1.setText(levelName);                      
+        levelBadge1.setBadgeColor(getLevelColor(levelName)); 
+        loadQuestionsByLevel();
+        showQuestion();
+    }
+
+    private Color getLevelColor(String level) {
+        switch (level.toLowerCase()) {
+            case "beginner":
+                return new Color(170, 255, 240);
+            case "moderate":
+                return new Color(255, 210, 120);
+            case "advanced":
+                return new Color(255, 120, 140);
+            default:
+                return Color.GRAY;
+        }
+    }
+
+    private void loadQuestionsByLevel() {
+        try {
+            Gson gson = new Gson();
+            InputStream input = getClass().getResourceAsStream("/vocab_data.json");
+            if (input == null) {
+                throw new FileNotFoundException("vocab_data.json not found!");
+            }
+
+            Reader reader = new InputStreamReader(input);
+            DifficultySet data = gson.fromJson(reader, DifficultySet.class);
+            String level = levelDesign.getLevel();
+            switch (level) {
+                case "Beginner":
+                    vocabList = data.getBeginner();
+                    break;
+                case "Moderate":
+                    vocabList = data.getModerate();
+                    break;
+                case "Advanced":
+                    vocabList = data.getAdvanced();
+                    break;
+                default:
+                    vocabList = new ArrayList<>();
+            }
+            index = 0;
+            Collections.shuffle(vocabList);
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void endGame() {
+        int total = vocabList.size();
+        double percent = ((double) score / total) * 100;
+        levelDesign.setScores(score);
+        levelDesign.setTotalQuestions(total);
+        levelDesign.setPercent(percent);
+        levelDesign.setScores(score);
+        frame_Win frame_Win = new frame_Win(levelDesign);
+        frame_Win.show();
+        this.dispose();
+    }
+
+    private void showQuestion() {
+
+        Vocabulary v = vocabList.get(index);
+
+        label_Question.setText(v.getWord());
+
+        label_NQuestion.setText("Question : " + (index + 1) + "/" + vocabList.size());
+
+        correctAnswer = v.getMeaning();
+
+        currentChoices = new ArrayList<>(v.getChoices());
+
+        Collections.shuffle(currentChoices);
+
+        btnA1.setText(currentChoices.get(0));
+        btnA2.setText(currentChoices.get(1));
+        btnA3.setText(currentChoices.get(2));
+        btnA4.setText(currentChoices.get(3));
+    }
+
+    private void setButtonsEnabled(boolean enabled) {
+        btnA1.setEnabled(enabled);
+        btnA2.setEnabled(enabled);
+        btnA3.setEnabled(enabled);
+        btnA4.setEnabled(enabled);
+    }
+
+    private void resetButtons() {
+        JButton[] buttons = {btnA1, btnA2, btnA3, btnA4};
+        for (JButton b : buttons) {
+            b.setBackground(new Color(240, 240, 240));
+            b.setIcon(null);
+        }
+        setButtonsEnabled(true);
+    }
+
+    private boolean isCorrect(JButton btn) {
+        return btn.getText().equals(correctAnswer);
+    }
+
+    private void checkAnswer(String selected) {
+        if (selected.equals(correctAnswer)) {
+            score++;
+        }
+        index++;
+        if (index < vocabList.size()) {
+            showQuestion();
+        } else {
+            endGame();
+        }
     }
 
     /**
@@ -35,13 +164,14 @@ public class frame_playing extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btnA1 = new javax.swing.JButton();
+        label_Question = new javax.swing.JLabel();
+        btnA1 = new CBtn("Start");
         jSeparator1 = new javax.swing.JSeparator();
-        btnA2 = new javax.swing.JButton();
-        btnA3 = new javax.swing.JButton();
-        btnA4 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        btnA2 = new CBtn("Start");
+        btnA3 = new CBtn("Start");
+        btnA4 = new CBtn("Start");
+        label_NQuestion = new javax.swing.JLabel();
+        levelBadge1 = new com.mycompany.project_vocabulary.LevelBadge();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -51,11 +181,12 @@ public class frame_playing extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Question :");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(20, 150, 155));
-        jLabel2.setText("You loved her and you killed her.");
+        label_Question.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        label_Question.setForeground(new java.awt.Color(20, 150, 155));
+        label_Question.setText("You loved her and you killed her.");
 
         btnA1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
         btnA1.setText("jButton1");
         btnA1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,7 +198,7 @@ public class frame_playing extends javax.swing.JFrame {
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         btnA2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        btnA2.setText("jButton1");
+        btnA2.setText("jButton2");
         btnA2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnA2ActionPerformed(evt);
@@ -75,7 +206,7 @@ public class frame_playing extends javax.swing.JFrame {
         });
 
         btnA3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        btnA3.setText("jButton1");
+        btnA3.setText("jButton3");
         btnA3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnA3ActionPerformed(evt);
@@ -83,15 +214,17 @@ public class frame_playing extends javax.swing.JFrame {
         });
 
         btnA4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        btnA4.setText("jButton1");
+        btnA4.setText("jButton4");
         btnA4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnA4ActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Question : 1/10");
+        label_NQuestion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        label_NQuestion.setText("Question : 1/10");
+
+        levelBadge1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -101,15 +234,16 @@ public class frame_playing extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(jLabel2))
+                        .addComponent(label_Question))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(levelBadge1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel3))
+                        .addComponent(label_NQuestion))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(305, 305, 305)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,10 +256,12 @@ public class frame_playing extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(20, 20, 20)
+                .addComponent(levelBadge1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel1)
                 .addGap(6, 6, 6)
-                .addComponent(jLabel2)
+                .addComponent(label_Question)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -136,8 +272,8 @@ public class frame_playing extends javax.swing.JFrame {
                 .addComponent(btnA3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(btnA4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                .addComponent(label_NQuestion)
                 .addContainerGap())
         );
 
@@ -157,18 +293,25 @@ public class frame_playing extends javax.swing.JFrame {
 
     private void btnA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnA1ActionPerformed
         // TODO add your handling code here:
+        checkAnswer(btnA1.getText());
     }//GEN-LAST:event_btnA1ActionPerformed
 
     private void btnA2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnA2ActionPerformed
         // TODO add your handling code here:
+        checkAnswer(btnA2.getText());
+
     }//GEN-LAST:event_btnA2ActionPerformed
 
     private void btnA3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnA3ActionPerformed
         // TODO add your handling code here:
+        checkAnswer(btnA3.getText());
+
     }//GEN-LAST:event_btnA3ActionPerformed
 
     private void btnA4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnA4ActionPerformed
         // TODO add your handling code here:
+        checkAnswer(btnA4.getText());
+
     }//GEN-LAST:event_btnA4ActionPerformed
 
     /**
@@ -202,9 +345,10 @@ public class frame_playing extends javax.swing.JFrame {
     private javax.swing.JButton btnA3;
     private javax.swing.JButton btnA4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel label_NQuestion;
+    private javax.swing.JLabel label_Question;
+    private com.mycompany.project_vocabulary.LevelBadge levelBadge1;
     // End of variables declaration//GEN-END:variables
 }
