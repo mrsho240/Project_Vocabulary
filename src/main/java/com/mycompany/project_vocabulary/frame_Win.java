@@ -10,7 +10,7 @@ package com.mycompany.project_vocabulary;
  */
 public class frame_Win extends javax.swing.JFrame {
 
-    private level_Design levelDesign;
+    level_Design level_Design = new level_Design();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_Win.class.getName());
 
     /**
@@ -22,15 +22,15 @@ public class frame_Win extends javax.swing.JFrame {
 
     public frame_Win(level_Design score) {
         initComponents();
-        this.levelDesign = score;
+        this.level_Design = score;
         System.out.println(score.getScores());
         totalscore();
     }
 
     public void totalscore() {
-        int score = levelDesign.getScores();
-        int total = levelDesign.getTotalQuestions();
-        double percent = levelDesign.getPercent();
+        int score = level_Design.getScores();
+        int total = level_Design.getTotalQuestions();
+        double percent = level_Design.getPercent();
 
         String result = score + "/" + total + " (" + String.format("%.0f", percent) + "%)";
         lable_Total.setText(result);
@@ -126,8 +126,8 @@ public class frame_Win extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(273, 273, 273))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(label_sum, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(220, 220, 220))))
+                        .addComponent(label_sum, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,6 +167,9 @@ public class frame_Win extends javax.swing.JFrame {
 
     private void btnPlayAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayAgainActionPerformed
         // TODO add your handling code here:
+        frame_playing frame_playing = new frame_playing(level_Design);
+        frame_playing.show();
+        dispose();
     }//GEN-LAST:event_btnPlayAgainActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed

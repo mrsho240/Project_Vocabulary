@@ -77,8 +77,8 @@
                           <EmptySpace min="-2" pref="273" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="label_sum" min="-2" pref="534" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
+                          <Component id="label_sum" min="-2" pref="714" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

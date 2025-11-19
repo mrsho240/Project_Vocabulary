@@ -127,7 +127,6 @@ public class frame_Main extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         java.awt.EventQueue.invokeLater(() -> new frame_Main().setVisible(true));
     }
 
