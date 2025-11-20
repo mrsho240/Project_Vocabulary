@@ -43,8 +43,9 @@ Ensure you have the following installed:
 
 ## ▶️ How to Run
 
-### Option 1: Run via IDE (Recommended)
+### Run via IDE (Recommended)
 1.  Open the project in NetBeans.
 2.  Locate `frame_Main.java` in the source packages.
 3.  Right-click and select **Run File** (or press `Shift + F6`).
+
 
