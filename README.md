@@ -1,32 +1,55 @@
+# Vocabulary Quiz Generator 🧠
 
----
+![Java](https://img.shields.io/badge/Language-Java-orange) ![IDE](https://img.shields.io/badge/IDE-NetBeans-blue) ![License](https://img.shields.io/badge/License-MIT-green)
 
-# 🧠 Vocabulary Quiz Generator
+A Vocabulary Quiz application developed using **Java Swing** and **OOP principles**. This project is part of the **CS436 Software Engineering** course. The application loads vocabulary data from a JSON file, generates random quizzes, and tracks the user's score.
 
-### Overview
+## 📷 Screenshots
+![Main Menu](docs/images/preview.png)
+*(Note: Screenshot showing the main interface)*
 
-The **Vocabulary Quiz Generator** is an automated system for creating multiple-choice vocabulary quizzes.
-This project focuses on **file input/output**, **randomization**, **state management (score tracking)**, and a **feedback loop** to help users test and improve their vocabulary knowledge.
+## ✨ Features
+- **External Data Loading:** Reads vocabulary data dynamically from `vocab_data.json`.
+- **Quiz Logic:** Randomizes questions and choices (1 correct, 3 distractors).
+- **Difficulty Selection:** Supports Beginner, Moderate, and Advanced levels.
+- **Scoring System:** Real-time feedback and final score summary.
+- **User Interface:** Clean and user-friendly GUI built with Java Swing.
 
-### Key Features
+## 🛠 Tech Stack
+- **Programming Language:** Java (JDK 21 recommended)
+- **GUI Framework:** Java Swing
+- **IDE:** Apache NetBeans IDE 27
+- **Data Format:** JSON
 
-* Reads vocabulary data from external files (`.txt` or `.csv`)
-* Randomly generates quiz questions with **4 answer choices**
-* Checks user responses and provides immediate feedback
-* Displays the **final score** at the end of the quiz
+## 🚀 Installation & Setup
 
-### Project Focus
+### Prerequisites
+Ensure you have the following installed:
+1.  **Java Development Kit (JDK) 8 or higher** (JDK 21 is recommended).
+2.  **Apache NetBeans** (or any Java IDE like IntelliJ/Eclipse).
 
-* **File handling:** Reading and processing data from text or CSV files
-* **Randomization:** Selecting words and answer choices dynamically
-* **State management:** Tracking scores and progress throughout the quiz
-* **Feedback loop:** Reinforcing learning through instant feedback
+### Steps to Clone and Open
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/mrsho240/Project_Vocabulary.git](https://github.com/mrsho240/Project_Vocabulary.git)
+    ```
+2.  **Open in NetBeans:**
+    - Open Apache NetBeans.
+    - Go to `File` > `Open Project`.
+    - Select the cloned folder.
 
-### Goals
+3.  **Setup Data File:**
+    - Ensure `vocab_data.json` is located in the **project root directory** (same level as `src` folder) or strictly follows the path defined in the code.
 
-1. Read vocabulary files (`.txt` or `.csv`)
-2. Generate random questions (4 choices per question)
-3. Validate answers
-4. Display total score after the quiz ends
+## ▶️ How to Run
 
----
+### Option 1: Run via IDE (Recommended)
+1.  Open the project in NetBeans.
+2.  Locate `frame_Main.java` in the source packages.
+3.  Right-click and select **Run File** (or press `Shift + F6`).
+
+### Option 2: Run via Command Line
+Navigate to the `src` folder (or where the compiled `.class` files are) and run:
+```bash
+javac frame_Main.java
+java frame_Main
