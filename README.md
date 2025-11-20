@@ -5,7 +5,7 @@
 A Vocabulary Quiz application developed using **Java Swing** and **OOP principles**. This project is part of the **CS436 Software Engineering** course. The application loads vocabulary data from a JSON file, generates random quizzes, and tracks the user's score.
 
 ## 📷 Screenshots
-![Main Menu](docs/images/preview.png)
+![Main Menu](05_Testing/Test_Evidence/preview.png)
 *(Note: Screenshot showing the main interface)*
 
 ## ✨ Features
@@ -48,8 +48,3 @@ Ensure you have the following installed:
 2.  Locate `frame_Main.java` in the source packages.
 3.  Right-click and select **Run File** (or press `Shift + F6`).
 
-### Option 2: Run via Command Line
-Navigate to the `src` folder (or where the compiled `.class` files are) and run:
-```bash
-javac frame_Main.java
-java frame_Main

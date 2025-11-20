@@ -1,0 +1,161 @@
+{
+  "Beginner": [
+    {
+      "word": "What is a synonym for 'fastidious'?",
+      "meaning": "Meticulous",
+      "choices": ["Careless", "Meticulous", "Friendly", "Generous"]
+    },
+    {
+      "word": "What is the opposite of 'happy'?",
+      "meaning": "Sad",
+      "choices": ["Large", "Sad", "Bright", "Calm"]
+    },
+    {
+      "word": "What does 'rapid' mean?",
+      "meaning": "Fast",
+      "choices": ["Slow", "Fast", "Heavy", "Sharp"]
+    },
+    {
+      "word": "Which word means 'a small child'?",
+      "meaning": "Toddler",
+      "choices": ["Teacher", "Toddler", "Parent", "Leader"]
+    },
+    {
+      "word": "What is a synonym for 'big'?",
+      "meaning": "Large",
+      "choices": ["Thin", "Large", "Quiet", "Soft"]
+    },
+    {
+      "word": "What does 'assist' mean?",
+      "meaning": "Help",
+      "choices": ["Hurt", "Help", "Ignore", "Stop"]
+    },
+    {
+      "word": "Which word means 'full of energy'?",
+      "meaning": "Energetic",
+      "choices": ["Lazy", "Energetic", "Sad", "Bored"]
+    },
+    {
+      "word": "What is the opposite of 'hot'?",
+      "meaning": "Cold",
+      "choices": ["Warm", "Cold", "Bright", "Smooth"]
+    },
+    {
+      "word": "What does 'purchase' mean?",
+      "meaning": "Buy",
+      "choices": ["Sell", "Buy", "Break", "Return"]
+    },
+    {
+      "word": "Which word means 'very good'?",
+      "meaning": "Excellent",
+      "choices": ["Awful", "Excellent", "Weak", "Normal"]
+    }
+  ],
+
+  "Moderate": [
+    {
+      "word": "What does 'ubiquitous' mean?",
+      "meaning": "Present everywhere",
+      "choices": ["Rare", "Present everywhere", "Dangerous", "Complex"]
+    },
+    {
+      "word": "What is a synonym for 'essential'?",
+      "meaning": "Necessary",
+      "choices": ["Unnecessary", "Necessary", "Fragile", "Secret"]
+    },
+    {
+      "word": "What does 'allocate' mean?",
+      "meaning": "Distribute for a purpose",
+      "choices": ["Hide", "Distribute for a purpose", "Destroy", "Interrupt"]
+    },
+    {
+      "word": "What does 'ambiguous' mean?",
+      "meaning": "Unclear or having multiple meanings",
+      "choices": ["Simple", "Unclear", "Dangerous", "Bright"]
+    },
+    {
+      "word": "What does 'conventional' mean?",
+      "meaning": "Traditional or common",
+      "choices": ["Unique", "Traditional", "Rare", "Confusing"]
+    },
+    {
+      "word": "What does 'deteriorate' mean?",
+      "meaning": "To become worse",
+      "choices": ["Improve", "Become worse", "Disappear", "Grow"]
+    },
+    {
+      "word": "What is a synonym for 'resilient'?",
+      "meaning": "Able to recover quickly",
+      "choices": ["Weak", "Recover quickly", "Lazy", "Slow"]
+    },
+    {
+      "word": "What does 'viable' mean?",
+      "meaning": "Workable or possible",
+      "choices": ["Impossible", "Workable", "Dangerous", "Meaningless"]
+    },
+    {
+      "word": "What does 'significant' mean?",
+      "meaning": "Important or meaningful",
+      "choices": ["Tiny", "Important", "Unrelated", "False"]
+    },
+    {
+      "word": "What is a synonym for 'emerge'?",
+      "meaning": "To come out",
+      "choices": ["Hide", "Come out", "Fall", "Break"]
+    }
+  ],
+
+  "Advanced": [
+    {
+      "word": "What does 'aberration' mean?",
+      "meaning": "a deviation from what is normal",
+      "choices": ["a deviation from what is normal", "a sudden improvement", "a strong agreement", "a predictable pattern"]
+    },
+    {
+      "word": "What does 'alacrity' mean?",
+      "meaning": "cheerful readiness or eagerness",
+      "choices": ["careful hesitation", "cheerful readiness or eagerness", "slow progression", "complete confusion"]
+    },
+    {
+      "word": "What does 'quintessential' mean?",
+      "meaning": "representing the most perfect example",
+      "choices": ["representing the most perfect example", "rarely seen or used", "extremely confusing", "lacking essential features"]
+    },
+    {
+      "word": "What does 'pulchritudinous' mean?",
+      "meaning": "physically beautiful",
+      "choices": ["physically beautiful", "extremely dangerous", "emotionally unstable", "difficult to understand"]
+    },
+    {
+      "word": "What does 'didactic' mean?",
+      "meaning": "intended to teach",
+      "choices": ["intended to teach", "expressing disagreement", "showing extreme fear", "pleasantly surprising"]
+    },
+    {
+      "word": "What does 'obstreperous' mean?",
+      "meaning": "noisy and difficult to control",
+      "choices": ["quiet and calm", "noisy and difficult to control", "easily persuaded", "highly intelligent"]
+    },
+    {
+      "word": "What does 'intransigent' mean?",
+      "meaning": "unwilling to change one’s views",
+      "choices": ["easily influenced", "unwilling to change one’s views", "quick to forgive", "deeply emotional"]
+    },
+    {
+      "word": "What does 'perfunctory' mean?",
+      "meaning": "carried out with minimal effort",
+      "choices": ["carried out with minimal effort", "requiring intense focus", "impossible to complete", "prepared with great care"]
+    },
+    {
+      "word": "What does 'recalcitrant' mean?",
+      "meaning": "stubbornly resisting authority",
+      "choices": ["friendly and cooperative", "stubbornly resisting authority", "easily frightened", "highly disciplined"]
+    },
+    {
+      "word": "What does 'vociferous' mean?",
+      "meaning": "loud and expressive",
+      "choices": ["silent and shy", "loud and expressive", "slow and steady", "bright and colorful"]
+    }
+  ]
+}
+
