@@ -31,7 +31,7 @@ Ensure you have the following installed:
 ### Steps to Clone and Open
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/mrsho240/Project_Vocabulary.git](https://github.com/mrsho240/Project_Vocabulary.git)
+    git clone https://github.com/mrsho240/Project_Vocabulary.git
     ```
 2.  **Open in NetBeans:**
     - Open Apache NetBeans.
@@ -47,5 +47,6 @@ Ensure you have the following installed:
 1.  Open the project in NetBeans.
 2.  Locate `frame_Main.java` in the source packages.
 3.  Right-click and select **Run File** (or press `Shift + F6`).
+
 
 
